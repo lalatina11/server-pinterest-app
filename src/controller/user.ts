@@ -90,7 +90,7 @@ const userController = {
         }
 
         const token = jwt.sign({ id: existingUser._id }, process.env.SECRET_KEY || "".toString(), {
-            expiresIn: "1h",
+            expiresIn: "3h",
         });
 
         res.cookie('token', token, {
@@ -192,7 +192,7 @@ const userController = {
             { id: userIdFromDB },
             process.env.SECRET_KEY || "".toString(),
             {
-                expiresIn: "30m",
+                expiresIn: "3h",
             }
         );
         // Set JWT cookie
@@ -200,7 +200,8 @@ const userController = {
             path: "/",
             httpOnly: true,
             secure: true,
-            sameSite: "lax"
+            sameSite: "lax",
+            maxAge: 7 * 24 * 60 * 60 * 1000,
         })
 
         const referer = req.headers.referer || req.headers.origin
@@ -251,12 +252,12 @@ const userController = {
         }
 
         const token = jwt.sign({ id }, process.env.SECRET_KEY || "".toString(), {
-            expiresIn: "30m",
+            expiresIn: "3h",
         });
         res.cookie("token", token, {
             path: "/",
             httpOnly: true,
-            maxAge: 60 * 60 * 24 * 7,
+            maxAge: 7 * 24 * 60 * 60 * 1000,
             sameSite: "lax",
             secure: !!process.env.NODE_ENV,
         });
