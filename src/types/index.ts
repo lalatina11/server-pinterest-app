@@ -11,6 +11,21 @@ export interface UserType extends Document {
     updatedAt: Date;
 }
 
+export interface CanvasOption {
+    height: number;
+    orientation: string;
+    size: string;
+    backgroundColor: string;
+}
+
+type TextOption = {
+    text: string;
+    fontSize: number;
+    color: string;
+    top: number;
+    left: number;
+}
+
 export interface PinType extends Document {
     media: string;
     width: number;
@@ -23,6 +38,8 @@ export interface PinType extends Document {
     user: mongoose.Schema.Types.ObjectId;
     createdAt: Date;
     updatedAt: Date;
+    canvasOption: string
+    textOption: string
 }
 
 export interface BoardType extends Document {
