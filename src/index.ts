@@ -8,7 +8,7 @@ import commentRoutes from "./routes/comment"
 import pinRoutes from "./routes/pin"
 import userRoutes from "./routes/user"
 dotenv.config()
-
+import expressFileUplad from "express-fileupload"
 const PORT = process.env.PORT || 3030
 const app = express()
 // ? localhost:5173 for dev
@@ -17,6 +17,7 @@ app.use(cors({
     origin: process.env.FRONTEND_URL || ["http://localhost:5173", "http://localhost:4173"],
     credentials: true
 }))
+app.use(expressFileUplad())
 app.use(cookieParser())
 app.use(express.json())
 app.use("/api/users", userRoutes)
