@@ -20,6 +20,7 @@ app.use(cors({
 app.use(expressFileUplad())
 app.use(cookieParser())
 app.use(express.json())
+app.get('/', (_, res) => { res.status(200).send("OK") })
 app.use("/api/users", userRoutes)
 app.use("/api/pins", pinRoutes)
 app.use("/api/comments", commentRoutes)
